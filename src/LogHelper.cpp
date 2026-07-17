@@ -1,5 +1,6 @@
 #include "../include/LogHelper.hpp"
 #include <chrono>
+#include <iomanip>
 #include <sstream>
 
 void LogHelper::statusMessage(const std::string& msg) {
@@ -14,7 +15,7 @@ void LogHelper::errorMessage(const std::string& msg) {
     ofs_ << getLocalDateTimeString() << "ERROR: " << msg << "\n";
 }
 
-std::string LogHelper::getLocalDateTimeString() {
+std::string LogHelper::getLocalDateTimeString() const {
     auto timeNow = std::chrono::system_clock::now();
     auto localTimeNow = std::chrono::zoned_time("Asia/Irkutsk", timeNow).get_local_time();
 

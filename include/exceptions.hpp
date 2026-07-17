@@ -6,7 +6,7 @@
 class UnableToOpenLogFileException : public std::exception {
 public:
 
-    const char* what const noexcept {
+    const char* what() const noexcept {
         return "Error: unable to open log file.";
     }
 
