@@ -1,6 +1,27 @@
-- name: Configure CMake
-run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+name: Check CMake Build of Sudoku project 
 
-- name: Build project
-run: cmake --build ./build --config Release
+
+on: 
+  push:
+    brahches: [ main, dev/main ]
+  pull_request:
+    branches: [ main, dev/main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: sudo apt update && sudo apt install -y build-essential
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build project
+        run: cmake --build ./build --config Release
 
