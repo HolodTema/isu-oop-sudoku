@@ -9,3 +9,16 @@
 3. autoplay mode, when a bot solves sudoku automatically with several approaches.
 
 4. TUI or GUI are coming soon.
+
+#### Key classes:
+
+exceptions.hpp - internal exception classes, which we handle via try-catch blocks
+
+LogHelper - to write logs of the game into the text file
+
+GameField - 9x9 cells field with numbers
+
+GameGenerator - generates sudoku GameField objects of several difficulty levels
+
+GameHandler - controls game process: counts errors, victory situation etc.
+

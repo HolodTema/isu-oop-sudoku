@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
-project(Sudoku)
 
-add_executable(main main.cpp)
+project(Sudoku VERSION 0.0.1 LANGUAGES CXX)
+
+add_executable(sudoku main.cpp)
+
