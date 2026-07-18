@@ -4,6 +4,26 @@
 
 #include "../include/exceptions.hpp"
 
+GameField& GameField::operator=(const GameField& other) {
+	if (this != &other) {
+		delete[] array_;
+		array_ = new GameCell[81];
+		for (int i = 0; i < 81; ++i) {
+			array_[i] = other.array_[i];
+		}
+	}
+	return *this;
+}
+
+GameField& GameField::operator=(GameField&& other) noexcept {
+	if (this != &other) {
+		delete[] array_;
+		array_ = other.array_;
+		other.array_ = nullptr;
+	}
+	return *this;
+}
+
 int GameField::getCellNumber(int row, int column) const {
 	if (row < 0 || row > 8) {
 		throw InvalidGameFieldRowException();
