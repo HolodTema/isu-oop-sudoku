@@ -10,8 +10,8 @@ public:
 
     explicit LogHelper(const std::string& filename):
         filename_(filename)
-    { 
-        ofs_(filename);
+    {
+        ofs_.open(filename_);
         if (!ofs_.is_open()) {
             throw UnableToOpenLogFileException();
         }
@@ -29,9 +29,9 @@ public:
 
 private:
     std::string filename_;
-    std::ofstream& ofs_;
+    std::ofstream ofs_;
 
-    std::string getLocalDateTimeString();
+    std::string getLocalDateTimeString() const;
 };
 
 #endif
