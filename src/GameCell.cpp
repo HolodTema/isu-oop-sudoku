@@ -1,5 +1,7 @@
 #include "../include/GameCell.hpp"
 
+#include <ostream>
+
 int GameCell::getValue() const {
 	return value_;
 }
@@ -13,4 +15,19 @@ void GameCell::setValue(int value) {
 
 bool GameCell::isEmpty() const {
 	return value_ == EMPTY_VALUE;
+}
+
+std::ostream& operator<<(std::ostream& os, const GameCell& gameCell) {
+	std::ostream::sentry s(os);
+	if (!s) {
+		return os;
+	}
+
+	if (gameCell.isEmpty()) {
+		os << " ";
+	}
+	else {
+		os << gameCell.getValue();
+	}
+	return os;
 }

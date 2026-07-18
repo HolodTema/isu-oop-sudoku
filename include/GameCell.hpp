@@ -1,6 +1,7 @@
 #ifndef GAME_CELL_HPP
 #define GAME_CELL_HPP
 
+#include <iosfwd>
 #include "exceptions.hpp"
 
 class GameCell {
@@ -27,5 +28,7 @@ public:
 private:
 	int value_;
 };
+
+std::ostream& operator<<(std::ostream& os, const GameCell& gameCell);
 
 #endif

@@ -2,12 +2,13 @@
 #define GAME_FIELD_HPP
 
 #include <iosfwd>
+#include "../include/GameCell.hpp"
 
 class GameField {
 public:
 
 	explicit GameField() {
-		array_ = new int[81];
+		array_ = new GameCell[81];
 	}
 
 	~GameField() {
@@ -17,7 +18,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const GameField& gameField);
 
 private:
-	int * array_;
+	GameCell* array_;
 
 	int getCellNumber(int row, int column) const;
 
