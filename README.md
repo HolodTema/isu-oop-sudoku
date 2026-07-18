@@ -18,6 +18,8 @@ LogHelper - to write logs of the game into the text file
 
 GameField - 9x9 cells field with numbers
 
+GameCell - game cell with number 1-9 or without number inside. 
+
 GameGenerator - generates sudoku GameField objects of several difficulty levels
 
 GameHandler - controls game process: counts errors, victory situation etc.
