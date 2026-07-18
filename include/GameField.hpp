@@ -11,6 +11,38 @@ public:
 		array_ = new GameCell[81];
 	}
 
+	GameField(const GameField& other) {
+		array_ = new GameCell[81];
+		for (int i = 0; i < 81; ++i) {
+			array_[i] = other.array_[i];
+		}
+	}
+
+	GameField(GameField&& other) noexcept {
+		array_ = other.array_;
+		other.array_ = nullptr;
+	}
+
+	GameField& operator=(const GameField& other) {
+		if (this != &other) {
+			delete[] array_;
+			array_ = new GameCell[81];
+			for (int i = 0; i < 81; ++i) {
+				array_[i] = other.array_[i];
+			}
+		}
+		return *this;
+	}
+
+	GameField& operator=(GameField&& other) noexcept {
+		if (this != &other) {
+			delete[] array_;
+			array_ = other.array_;
+			other.array_ = nullptr;
+		}
+		return *this;
+	}
+
 	~GameField() {
 		delete[] array_;
 	}

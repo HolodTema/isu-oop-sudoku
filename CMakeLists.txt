@@ -6,4 +6,5 @@ add_executable(sudoku ./src/main.cpp
     ./src/LogHelper.cpp
     ./src/GameField.cpp
     ./src/GameCell.cpp
+        include/GameDifficulty.hpp
 )
