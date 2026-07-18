@@ -50,13 +50,24 @@ std::ostream& operator<<(std::ostream& os, const GameField& gameField) {
 		return os;
 	}
 
-	os << "-------------------------------------\n";
+	os << "=====================================\n";
 	for (int row = 0; row < 9; ++row) {
-		os << "| ";
+		os << "∥ ";
 		for (int column = 0; column < 9; ++column) {
-			os << gameField.array_[row*9 + column] << " | ";
+			os << gameField.array_[row*9 + column];
+			if ((column + 1) % 3 == 0) {
+				os << " ∥ ";
+			}
+			else {
+				os << " | ";
+			}
 		}
-		os << "\n-------------------------------------\n";
+		if ((row + 1) % 3 == 0) {
+			os << "\n=====================================\n";
+		}
+		else {
+			os << "\n-------------------------------------\n";
+		}
 	}
 	return os;
 }

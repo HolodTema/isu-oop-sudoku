@@ -2,7 +2,7 @@
 #include "../include/GameFieldGenerator.hpp"
 
 int main() {
-    GameFieldGenerator generator(GameDifficulty::Hard);
+    GameFieldGenerator generator(GameDifficulty::Easy);
     std::pair<GameField, GameField> pairFields = generator.generate();
 
     GameField gameFieldFilled = pairFields.first;
