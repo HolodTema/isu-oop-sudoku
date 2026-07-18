@@ -13,10 +13,10 @@ public:
 		difficulty_(difficulty)
 	{ }
 
-	std::pair<GameField, GameField> generate() const;
+	std::pair<GameField, GameField> generate();
 
 private:
-	static std::mt19937 randomNumberGenerator = std::mt19937(
+	std::mt19937 randomNumberGenerator = std::mt19937(
 		std::chrono::steady_clock::now().time_since_epoch().count()
 	);
 
@@ -26,7 +26,7 @@ private:
 
 	bool fillBoardRecursiveBacktracking(int* board);
 
-	int countBoardSolutions(int* board);
+	int countBoardSolutions(int* board, int limitOfSolutionsToStop);
 
 	void removeCellsFromFilledBoard(int* board);
 };

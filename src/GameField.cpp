@@ -50,13 +50,13 @@ std::ostream& operator<<(std::ostream& os, const GameField& gameField) {
 		return os;
 	}
 
-	os << "-------------------";
+	os << "-------------------------------------\n";
 	for (int row = 0; row < 9; ++row) {
-		os << "|";
+		os << "| ";
 		for (int column = 0; column < 9; ++column) {
-			os << gameField.array_[row*9 + column] << "|";
+			os << gameField.array_[row*9 + column] << " | ";
 		}
-		os << "-------------------";
+		os << "\n-------------------------------------\n";
 	}
 	return os;
 }
