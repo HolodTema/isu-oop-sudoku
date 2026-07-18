@@ -27,5 +27,7 @@ private:
 	bool fillBoardRecursiveBacktracking(int* board);
 
 	int countBoardSolutions(int* board);
+
+	void removeCellsFromFilledBoard(int* board);
 };
 #endif

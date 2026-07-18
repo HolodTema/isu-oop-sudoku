@@ -63,7 +63,33 @@ bool GameFieldGenerator::fillBoardRecursiveBacktracking(int* board) {
 	return false;
 }
 
-int GameFieldGenerator::countBoardSolutions(int* board) {
+int GameFieldGenerator::countBoardSolutions(int* board, int limitOfSolutionsToStop) {
+	int countSolutions = 0;
+	
 
 }
 
+void GameFieldGenerator::removeCellsFromFilledBoard(int* board) {
+	std::vector<std::pair<int, int>> vecAllCellPositions(81);
+	for (int row = 0; row < 9; ++row) {
+		for (int column = 0; column < 9; ++column) {
+			vecAllCellPositions[row*9 + column] = std::make_pair(row, column);
+		}
+	}
+	std::shuffle(vecAllCellPositions.begin(), vecAllCellPositions.end(), randomNumberGenerator);
+
+	int countRemovedCells = 0;
+	for (auto [row, column] : vecAllCellPositions) {
+		if (countRemovedCells > difficulty_) {
+			break;
+		}
+
+		int cellBackup = board[row*9 + column];
+		if (countBoardSolutions(board, 2) == 1) {
+			++countRemovedCells;
+		}
+		else {
+			board[row*9 + column] = cellBackup;
+		}
+	}
+}
