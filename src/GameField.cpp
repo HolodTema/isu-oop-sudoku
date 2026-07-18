@@ -1,10 +1,42 @@
 #include "../include/GameField.hpp"
 
+#include <ostream>
+
+#include "../include/exceptions.hpp"
 
 int GameField::getCellNumber(int row, int column) const {
-
+	if (row < 0 || row > 8) {
+		throw InvalidGameFieldRowException();
+	}
+	if (column < 0 || column > 8) {
+		throw InvalidGameFieldColumnException();
+	}
+	return array_[row*9 + column].getValue();
 }
 
-void GameField::setCellNumber(int row, int column) {
-	array_[row*9+column] =
+void GameField::setCellNumber(int row, int column, int number) {
+	if (row < 0 || row > 8) {
+		throw InvalidGameFieldRowException();
+	}
+	if (column < 0 || column > 8) {
+		throw InvalidGameFieldColumnException();
+	}
+	array_[row*9+column].setValue(number);
+}
+
+std::ostream& operator<<(std::ostream& os, const GameField& gameField) {
+	std::ostream::sentry s(os);
+	if (!s) {
+		return os;
+	}
+
+	os << "-------------------";
+	for (int row = 0; row < 9; ++row) {
+		os << "|";
+		for (int column = 0; column < 9; ++column) {
+			os << gameField.array_[row*9 + column] << "|";
+		}
+		os << "-------------------";
+	}
+	return os;
 }

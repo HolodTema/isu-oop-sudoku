@@ -10,6 +10,9 @@ void GameCell::setValue(int value) {
 	if (value < 1 || value > 9) {
 		throw InvalidGameCellException();
 	}
+	if (!isEmpty()) {
+		throw UnableToSetNumberToBusyGameCellException();
+	}
 	value_ = value;
 }
 

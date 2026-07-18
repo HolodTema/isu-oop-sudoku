@@ -15,14 +15,14 @@ public:
 		delete[] array_;
 	}
 
+	int getCellNumber(int row, int column) const;
+
+	void setCellNumber(int row, int column, int number);
+
 	friend std::ostream& operator<<(std::ostream& os, const GameField& gameField);
 
 private:
 	GameCell* array_;
-
-	int getCellNumber(int row, int column) const;
-
-	void setCellNumber(int row, int column);
 };
 
 std::ostream& operator<<(std::ostream& os, const GameField& gameField);
