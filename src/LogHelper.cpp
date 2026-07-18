@@ -1,5 +1,5 @@
 #include "../include/LogHelper.hpp"
-#include <chrono>
+#include <ctime>
 #include <iomanip>
 #include <sstream>
 
@@ -16,26 +16,9 @@ void LogHelper::errorMessage(const std::string& msg) {
 }
 
 std::string LogHelper::getLocalDateTimeString() const {
-    auto timeNow = std::chrono::system_clock::now();
-    auto localTimeNow = std::chrono::zoned_time("Asia/Irkutsk", timeNow).get_local_time();
-
-    auto yearMonthDay = std::chrono::year_month_day(floor<days>(localTimeNow));
-    auto hourMinuteSecond = std::chrono::hh_mm_ss(localTimeNow - floor<days>(localTimeNow));
-
-    int year = static_cast<int>(yearMonthDay.year());
-    int month = static_cast<int>(yearMonthDay.month());
-    int day = static_cast<int>(yearMonthDay.day());
-    int hour = hourMinuteSecond.hours().count();
-    int minute = hourMinuteSecond.minutes().count();
-    int second = hourMinuteSecond.seconds().count();
-
+    std::time_t secondsSinceEpoch = std::time(nullptr);
+    std::tm tm = *std::localtime(&secondsSinceEpoch);
     std::ostringstream oss;
-    oss << std::setfill('0');
-    oss << std::setw(4) << year << "-";
-    oss << std::setw(2) << month << "-";
-    oss << std::setw(2) << day << " ";
-    oss << std::setw(2) << hour << ":";
-    oss << std::setw(2) << minute << ":";
-    oss << std::setw(2) << second;
+    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
     return oss.str();
 }
