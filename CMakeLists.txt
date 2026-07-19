@@ -7,4 +7,5 @@ add_executable(sudoku ./src/main.cpp
     ./src/GameField.cpp
     ./src/GameCell.cpp
     ./src/GameFieldGenerator.cpp
+    ./src/GameHandler.cpp
 )

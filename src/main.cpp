@@ -1,15 +1,9 @@
 #include <iostream>
 #include "../include/GameFieldGenerator.hpp"
+#include "../include/GameHandler.hpp"
 
 int main() {
-    GameFieldGenerator generator(GameDifficulty::Easy);
-    std::pair<GameField, GameField> pairFields = generator.generate();
-
-    GameField gameFieldFilled = pairFields.first;
-    GameField gameFieldPuzzle = pairFields.second;
-
-    std::cout << gameFieldFilled << "\n\n";
-    std::cout << gameFieldPuzzle;
-    return 0;
+	GameHandler handler(std::cin, std::cout);
+	handler.run();
+	return 0;
 }
-
