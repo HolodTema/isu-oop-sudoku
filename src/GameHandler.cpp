@@ -66,9 +66,14 @@ void GameHandler::showGameScreen(const GameDifficulty& difficulty) {
 		os_ << gameFieldPuzzle;
 		os_ << "Enter ROW, COLUMN and VALUE you want to set into the cell.\n";
 		os_ << "You need to enter three numbers, every number is in range 1-9.\n";
+		os_ << "Or enter 'q' to go to Main Menu.\n";
 		int row = 0;
 		int column = 0;
 		int value = 0;
+		char ch = is_.peek();
+		if (ch == 'q') {
+
+		}
 		is_ >> row >> column >> value;
 		if (is_.fail()) {
 			std::cin.clear();
