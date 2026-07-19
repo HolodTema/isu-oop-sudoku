@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <cstdlib>
+#include <sstream>
 
 void ScreenHandler::run() {
 	isRunning_ = true;
@@ -49,10 +50,11 @@ void ScreenHandler::showMainMenuScreen() {
 	int option = 0;
 	is_ >> option;
 	if (!is_ || option < 1 || option > 4) {
-		os_ << "Error. You need to enter number in range 1-4. Try again.\n";
 		repairInputStreamAndClearBuffer();
+		os_ << "Error. You need to enter number in range 1-4. Try again.\n";
 		return;
 	}
+	repairInputStreamAndClearBuffer();
 
 	if (option == 1) {
 		gameHandler_ = new GameHandler(GameDifficulty::Easy);
@@ -87,41 +89,45 @@ void ScreenHandler::showGameScreen() {
 	gameHandler_->printGameFieldPuzzle(os_);
 	os_ << "Enter ROW, COLUMN and VALUE you want to set into the cell.\n";
 	os_ << "Or enter 'q' to go to Main Menu.\n";
-	char ch = is_.peek();
-	if (ch == 'q') {
+
+	std::string line;
+	std::getline(is_, line);
+	if (line == "q" || line == "Q") {
 		delete gameHandler_;
 		gameHandler_ = nullptr;
 		currentScreen_ = Screen::MainMenu;
+		return;
 	}
 
+	std::istringstream iss(line);
 	int row = 0;
 	int column = 0;
 	int value = 0;
-	is_ >> row >> column >> value;
-	if (!is_ || row < 1 || column < 1 || value < 1 || row > 9 || column > 9 || value > 9) {
-		repairInputStreamAndClearBuffer();
+
+	iss >> row >> column >> value;
+	if (!iss || row < 1 || column < 1 || value < 1 || row > 9 || column > 9 || value > 9) {
 		os_ << "You need to enter three numbers, every number is in range 1-9. Try again.\n";
 		return;
 	}
 
-	bool isMistake = false;
+	bool isRightTurn = false;
 	try {
-		isMistake = gameHandler_->makeTurn(row - 1, column - 1, value);
+		isRightTurn = gameHandler_->makeTurn(row - 1, column - 1, value);
 	}
 	catch (const UnableToSetNumberToBusyGameCellException& e) {
-		repairInputStreamAndClearBuffer();
 		os_ << "The cell you chose to put value is already busy. It is not mistake, just choose another game cell. Try again.\n";
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		return;
 	}
 
-	if (isMistake) {
-		os_ << "Mistake!\n";
-	}
-	else {
+	if (isRightTurn) {
 		os_ << "Right!\n";
 		if (gameHandler_->isVictory()) {
 			currentScreen_ = Screen::Victory;
 		}
+	}
+	else {
+		os_ << "Mistake!\n";
 	}
 }
 
@@ -129,10 +135,12 @@ void ScreenHandler::showVictoryScreen() {
 	os_ << "Sudoku CLI Game. Victory!\n";
 	os_ << "You have solved this sudoku!\n";
 	os_ << "Amount mistakes: " << gameHandler_->getAmountMistakes() << "\n\n";
-	os_ << "Press any key to go to Main Menu\n";
-	char ch = '\0';
-	is_ >> ch;
-	delete gameHandler_;
-	gameHandler_ = nullptr;
-	currentScreen_ = Screen::MainMenu;
+	os_ << "Press 'q' to go to Main Menu\n";
+	std::string line;
+	std::getline(is_, line);
+	if (line == "q" || line == "Q") {
+		delete gameHandler_;
+		gameHandler_ = nullptr;
+		currentScreen_ = Screen::MainMenu;
+	}
 }

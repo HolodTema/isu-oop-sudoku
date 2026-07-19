@@ -9,6 +9,9 @@ int GameHandler::getAmountMistakes() const {
 }
 
 bool GameHandler::makeTurn(int row, int column, int value) {
+	if (gameFieldPuzzle_.getCellNumber(row, column) != GameCell::EMPTY_VALUE) {
+		throw UnableToSetNumberToBusyGameCellException();
+	}
 	if (gameFieldFilled_.getCellNumber(row, column) != value) {
 		amountMistakes_++;
 		return false;
