@@ -37,6 +37,8 @@ public:
 
 	bool isFilled() const;
 
+	std::string toString() const;
+
 	friend std::ostream& operator<<(std::ostream& os, const GameField& gameField);
 
 private:

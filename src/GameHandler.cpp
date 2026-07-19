@@ -27,3 +27,7 @@ bool GameHandler::isVictory() const {
 void GameHandler::printGameFieldPuzzle(std::ostream& os) const {
 	os << gameFieldPuzzle_;
 }
+
+const GameField GameHandler::getGameFieldPuzzle() const {
+	return gameFieldPuzzle_;
+}

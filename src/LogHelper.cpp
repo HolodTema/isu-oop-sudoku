@@ -4,15 +4,15 @@
 #include <sstream>
 
 void LogHelper::statusMessage(const std::string& msg) {
-    ofs_ << getLocalDateTimeString() << "STATUS: " << msg << "\n";
+    ofs_ << getLocalDateTimeString() << " STATUS: " << msg << "\n\n";
 }
 
 void LogHelper::warningMessage(const std::string& msg) {
-    ofs_ << getLocalDateTimeString() << "WARNING: " << msg << "\n";
+    ofs_ << getLocalDateTimeString() << " WARNING: " << msg << "\n\n";
 }
 
 void LogHelper::errorMessage(const std::string& msg) {
-    ofs_ << getLocalDateTimeString() << "ERROR: " << msg << "\n";
+    ofs_ << getLocalDateTimeString() << " ERROR: " << msg << "\n\n";
 }
 
 std::string LogHelper::getLocalDateTimeString() const {
