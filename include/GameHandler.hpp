@@ -1,31 +1,38 @@
 #ifndef GAME_HANDLER_HPP
 #define GAME_HANDLER_HPP
 
-#include <iosfwd>
 #include "GameDifficulty.hpp"
+#include "GameField.hpp"
+#include "GameFieldGenerator.hpp"
 
 class GameHandler {
 public:
 
-	GameHandler(std::istream& is, std::ostream& os):
-		is_(is),
-		os_(os),
-		countMistakes_(0)
-	{ }
+	GameHandler(const GameDifficulty& difficulty):
+		difficulty_(difficulty),
+		amountMistakes_(0)
+	{
+		GameFieldGenerator generator(difficulty);
+		auto pairGameFields = generator.generate();
+		gameFieldFilled_ = pairGameFields.first;
+		gameFieldPuzzle_ = pairGameFields.second;
+	}
 
-	void run();
+	GameDifficulty getDifficulty() const;
+
+	int getAmountMistakes() const;
+
+	bool makeTurn(int row, int column, int value);
+
+	bool isVictory() const;
+
+	void printGameFieldPuzzle(std::ostream& os) const;
 
 private:
-	std::istream& is_;
-	std::ostream& os_;
-	int countMistakes_;
-
-	void showMainMenuScreen();
-
-	void showGameScreen(const GameDifficulty& difficulty);
-
-	void showVictoryScreen();
-
+	GameDifficulty difficulty_;
+	int amountMistakes_;
+	GameField gameFieldFilled_;
+	GameField gameFieldPuzzle_;
 };
 
 #endif

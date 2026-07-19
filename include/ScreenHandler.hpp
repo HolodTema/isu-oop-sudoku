@@ -4,6 +4,7 @@
 #include <iosfwd>
 #include "Screen.hpp"
 #include "GameDifficulty.hpp"
+#include "GameHandler.hpp"
 
 class ScreenHandler {
 public:
@@ -12,16 +13,22 @@ public:
 		is_(is),
 		os_(os),
 		isRunning_(false),
-		currentScreen_(Screen::MainMenu)
+		currentScreen_(Screen::MainMenu),
+		gameHandler_(nullptr)
 	{ }
 
 	void run();
+
+	~ScreenHandler() {
+		delete gameHandler_;
+	}
 
 private:
 	std::istream& is_;
 	std::ostream& os_;
 	bool isRunning_;
 	Screen currentScreen_;
+	GameHandler* gameHandler_;
 
 	void clearScreen();
 
@@ -29,8 +36,8 @@ private:
 
 	void showMainMenuScreen();
 
-	void showGameScreen(const GameDifficulty& difficulty);
+	void showGameScreen();
 
-	void showVictoryScreen(int amountMistakes);
+	void showVictoryScreen();
 };
 #endif

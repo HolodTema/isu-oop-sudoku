@@ -44,6 +44,15 @@ void GameField::setCellNumber(int row, int column, int number) {
 	array_[row*9+column].setValue(number);
 }
 
+bool GameField::isFilled() const {
+	for (int i = 0; i < 81; ++i) {
+		if (array_[i].isEmpty()) {
+			return false;
+		}
+	}
+	return true;
+}
+
 std::ostream& operator<<(std::ostream& os, const GameField& gameField) {
 	std::ostream::sentry s(os);
 	if (!s) {
