@@ -35,6 +35,8 @@ public:
 
 	void setCellNumber(int row, int column, int number);
 
+	bool isFilled() const;
+
 	friend std::ostream& operator<<(std::ostream& os, const GameField& gameField);
 
 private:

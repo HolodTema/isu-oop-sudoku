@@ -2,8 +2,8 @@
 #define GAME_DIFFICULTY_HPP
 
 enum class GameDifficulty {
-	Easy = 30,
-	Medium = 40,
+	Easy = 25,
+	Medium = 35,
 	Hard = 50
 };
 
