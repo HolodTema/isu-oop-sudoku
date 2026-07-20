@@ -1,6 +1,6 @@
-#include "../include/game/GameField.hpp"
+#include "../../include/game/GameField.hpp"
 #include <sstream>
-#include "../include/util/exceptions.hpp"
+#include "../../include/util/exceptions.hpp"
 
 GameField& GameField::operator=(const GameField& other) {
 	if (this != &other) {

@@ -1,4 +1,4 @@
-#include "../include/game/GameCell.hpp"
+#include "../../include/game/GameCell.hpp"
 
 #include <ostream>
 
