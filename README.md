@@ -12,5 +12,5 @@
 
 ### Object model
 
-[object-model.svg]
+[](object-model.svg)
 
