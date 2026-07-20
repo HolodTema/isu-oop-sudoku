@@ -2,7 +2,7 @@
 #define GAME_CELL_HPP
 
 #include <iosfwd>
-#include "exceptions.hpp"
+#include "../util/exceptions.hpp"
 
 class GameCell {
 public:

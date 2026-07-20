@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/ScreenHandler.hpp"
+#include "../include/ui/ScreenHandler.hpp"
 
 int main() {
 	ScreenHandler screenHandler(std::cin, std::cout);

@@ -1,8 +1,6 @@
-#include "../include/GameField.hpp"
-
-#include <ostream>
-
-#include "../include/exceptions.hpp"
+#include "../include/game/GameField.hpp"
+#include <sstream>
+#include "../include/util/exceptions.hpp"
 
 GameField& GameField::operator=(const GameField& other) {
 	if (this != &other) {
@@ -51,6 +49,12 @@ bool GameField::isFilled() const {
 		}
 	}
 	return true;
+}
+
+std::string GameField::toString() const {
+	std::ostringstream oss;
+	oss << *this;
+	return oss.str();
 }
 
 std::ostream& operator<<(std::ostream& os, const GameField& gameField) {

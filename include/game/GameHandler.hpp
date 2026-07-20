@@ -28,6 +28,8 @@ public:
 
 	void printGameFieldPuzzle(std::ostream& os) const;
 
+	const GameField getGameFieldPuzzle() const;
+
 private:
 	GameDifficulty difficulty_;
 	int amountMistakes_;

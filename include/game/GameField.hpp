@@ -2,7 +2,7 @@
 #define GAME_FIELD_HPP
 
 #include <iosfwd>
-#include "../include/GameCell.hpp"
+#include "GameCell.hpp"
 
 class GameField {
 public:
@@ -36,6 +36,8 @@ public:
 	void setCellNumber(int row, int column, int number);
 
 	bool isFilled() const;
+
+	std::string toString() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const GameField& gameField);
 

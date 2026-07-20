@@ -3,8 +3,8 @@
 
 #include <iosfwd>
 #include "Screen.hpp"
-#include "GameDifficulty.hpp"
-#include "GameHandler.hpp"
+#include "../game/GameHandler.hpp"
+#include "../util/LogHelper.hpp"
 
 class ScreenHandler {
 public:
@@ -14,7 +14,8 @@ public:
 		os_(os),
 		isRunning_(false),
 		currentScreen_(Screen::MainMenu),
-		gameHandler_(nullptr)
+		gameHandler_(nullptr),
+		logHelper_("log.txt")
 	{ }
 
 	void run();
@@ -29,6 +30,7 @@ private:
 	bool isRunning_;
 	Screen currentScreen_;
 	GameHandler* gameHandler_;
+	LogHelper logHelper_;
 
 	void clearScreen();
 

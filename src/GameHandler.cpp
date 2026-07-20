@@ -1,4 +1,4 @@
-#include "../include/GameHandler.hpp"
+#include "../include/game/GameHandler.hpp"
 
 GameDifficulty GameHandler::getDifficulty() const {
 	return difficulty_;
@@ -26,4 +26,8 @@ bool GameHandler::isVictory() const {
 
 void GameHandler::printGameFieldPuzzle(std::ostream& os) const {
 	os << gameFieldPuzzle_;
+}
+
+const GameField GameHandler::getGameFieldPuzzle() const {
+	return gameFieldPuzzle_;
 }
