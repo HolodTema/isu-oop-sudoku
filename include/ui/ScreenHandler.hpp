@@ -3,8 +3,8 @@
 
 #include <iosfwd>
 #include "Screen.hpp"
-#include "GameHandler.hpp"
-#include "LogHelper.hpp"
+#include "../game/GameHandler.hpp"
+#include "../util/LogHelper.hpp"
 
 class ScreenHandler {
 public:

@@ -1,4 +1,4 @@
-#include "../include/ScreenHandler.hpp"
+#include "../include/ui/ScreenHandler.hpp"
 #include <iostream>
 #include <limits>
 #include <thread>

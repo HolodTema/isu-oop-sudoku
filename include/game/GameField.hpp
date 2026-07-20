@@ -2,7 +2,7 @@
 #define GAME_FIELD_HPP
 
 #include <iosfwd>
-#include "../include/GameCell.hpp"
+#include "GameCell.hpp"
 
 class GameField {
 public:

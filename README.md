@@ -1,26 +1,16 @@
-## SUDOKU Terminal Game. Version 0.1
+## SUDOKU CLI Game. Version 0.2
 
-#### Key features:
+### Key features:
 
 1. generate 9x9 sudoku field of several difficulty levels: easy, normal, hard.
 
-2. user can solve sudoku and put some numbers into cells. Errors and score are monitored.
+2. user can solve sudoku and put some numbers into cells. Mistakes are monitored.
 
-3. autoplay mode, when a bot solves sudoku automatically with several approaches.
+3. TUI with 3 screens: Screen::MainMenu, Screen::Game, Screen::Victory.
 
-4. TUI or GUI are coming soon.
+4. log game events to text file.
 
-#### Key classes:
+### Object model
 
-exceptions.hpp - internal exception classes, which we handle via try-catch blocks
-
-LogHelper - to write logs of the game into the text file
-
-GameField - 9x9 cells field with numbers
-
-GameCell - game cell with number 1-9 or without number inside. 
-
-GameGenerator - generates sudoku GameField objects of several difficulty levels
-
-GameHandler - controls game process: counts errors, victory situation etc.
+[object-model.svg]
 

@@ -1,4 +1,4 @@
-#include "../include/GameHandler.hpp"
+#include "../include/game/GameHandler.hpp"
 
 GameDifficulty GameHandler::getDifficulty() const {
 	return difficulty_;

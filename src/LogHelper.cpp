@@ -1,4 +1,4 @@
-#include "../include/LogHelper.hpp"
+#include "../include/util/LogHelper.hpp"
 #include <ctime>
 #include <iomanip>
 #include <sstream>
